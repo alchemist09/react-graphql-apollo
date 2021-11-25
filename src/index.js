@@ -2,7 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { ApolloClient, InMemoryCache } from '@apollo/client'
 import reportWebVitals from './reportWebVitals';
+
+const GITHUB_BASE_URI = `https://api.github.com/graphql`
+
+const client = new ApolloClient({
+  uri: GITHUB_BASE_URI,
+  cache: new InMemoryCache()
+})
 
 ReactDOM.render(
   <React.StrictMode>
