@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import Loading from '../Loading'
 
 const GET_CURRENT_USER = gql`
   {
@@ -13,9 +14,7 @@ const Profile = () => {
   const { loading, error, data } = useQuery(GET_CURRENT_USER)
   
   if(loading) {
-    return (
-      <div>Loading.......</div>
-    )
+    <Loading />
   }
 
   if(error) return `Error: ${error.message}`
