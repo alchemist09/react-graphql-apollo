@@ -7,6 +7,7 @@ const GET_CURRENT_USER = gql`
       name
     }
   }
+`
 
 const Profile = () => {
   return (
