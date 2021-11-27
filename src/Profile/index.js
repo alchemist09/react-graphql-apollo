@@ -11,10 +11,17 @@ const GET_CURRENT_USER = gql`
 
 const Profile = () => {
   const { loading, error, data } = useQuery(GET_CURRENT_USER)
+  
+  if(loading) {
+    return (
+      <div>Loading.......</div>
+    )
+  }
 
-  if(loading) return "Loading......"
   if(error) return `Error: ${error.message}`
+
   const { viewer } = data
+
   return (
     <div>
       <h1>Profile</h1>
