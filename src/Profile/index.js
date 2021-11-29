@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import Loading from '../Loading'
+import RepositoryList from '../Repository'
 
 const GET_REPOSITORIES_OF_CURRENT_USER = gql`
   {
@@ -48,10 +49,7 @@ const Profile = () => {
   const { viewer } = data
 
   return (
-    <div>
-      <h1>Profile</h1>
-      {viewer.name} {viewer.login}
-    </div>
+    <RepositoryList repositories={viewer.repositories} />
   )
 }
 
