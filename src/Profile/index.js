@@ -19,6 +19,7 @@ const Profile = () => {
 
   if(error) return `Error: ${error.message}`
 
+  if(!data)  return null
   const { viewer } = data
 
   return (
