@@ -1,17 +1,42 @@
 import { gql, useQuery } from '@apollo/client'
 import Loading from '../Loading'
 
-const GET_CURRENT_USER = gql`
+const GET_REPOSITORIES_OF_CURRENT_USER = gql`
   {
     viewer {
       login
       name
+      repositories(first: 5, orderBy: { direction: DESC, field: stargazers }) {
+        edges {
+          node {
+            id
+            name
+            url
+            descriptionHTML
+            primaryLanguage {
+              name
+            }
+            owner {
+              login
+              url
+            }
+            stargazers {
+              totalCount
+            }
+            viewerHasStared
+            watchers {
+              totalCount
+            }
+            viewerSubscription
+          }
+        }
+      }
     }
   }
 `
 
 const Profile = () => {
-  const { loading, error, data } = useQuery(GET_CURRENT_USER)
+  const { loading, error, data } = useQuery(GET_REPOSITORIES_OF_CURRENT_USER)
   
   if(loading) {
     <Loading />
