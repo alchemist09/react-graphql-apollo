@@ -1,9 +1,9 @@
 import RepositoryItem from "../RepositoryItem"
 import '../../index.css'
 
-const RepositoryList = ({ respoitories }) => {
+const RepositoryList = ({ repositories }) => {
   return (
-    respoitories.edges.map(({ node }) => (
+    repositories.edges.map(({ node }) => (
       <div key={node.id} className="RepositoryItem">
         <RepositoryItem {...node} />
       </div>
