@@ -24,7 +24,7 @@ const GET_REPOSITORIES_OF_CURRENT_USER = gql`
             stargazers {
               totalCount
             }
-            viewerHasStared
+            viewerHasStarred
             watchers {
               totalCount
             }
