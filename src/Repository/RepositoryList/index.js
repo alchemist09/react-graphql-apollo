@@ -1,5 +1,5 @@
 import RepositoryItem from "../RepositoryItem"
-import '../style.css'
+import '../../index.css'
 
 const RepositoryList = ({ respoitories }) => {
   return (

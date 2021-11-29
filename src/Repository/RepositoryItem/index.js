@@ -1,5 +1,5 @@
 import Link from "../../Link"
-import '../styles.css'
+import '../../index.css'
 
 const RepositoryItem = ({
   name,
