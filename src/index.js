@@ -2,8 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from '@apollo/client'
+import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client'
+import { onError } from '@apollo/client/link/error'
+
 import reportWebVitals from './reportWebVitals';
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if(graphQLErrors) {
+    // handle graphql errors
+    graphQLErrors.forEach(({ message, location, path }) => {
+      console.log(
+        `[GraphQL Error]: Message: ${message}, Location: ${location}, Path: ${path}`
+      )
+    })
+  }
+
+  if(networkError) {
+    // handle network error
+    console.log(`[Network Error]: ${networkError}`)
+  }
+})
 
 const GITHUB_BASE_URI = `https://api.github.com/graphql`
 
@@ -15,7 +33,7 @@ const httpLink = new HttpLink({
 })
 
 const client = new ApolloClient({
-  link: httpLink,
+  link: from([errorLink, httpLink]),
   cache: new InMemoryCache()
 })
 
