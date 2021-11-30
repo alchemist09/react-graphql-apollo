@@ -1,3 +1,5 @@
+import './style.css'
+
 const ErrorMessage = ({ error }) => {
   return (
     <div className="ErrorMessagee">
