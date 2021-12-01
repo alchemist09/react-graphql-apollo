@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 import Link from "../../Link"
 import '../../index.css'
 
@@ -14,6 +14,7 @@ const STAR_REPOSITORY = gql`
 `
 
 const RepositoryItem = ({
+  id,
   name,
   url,
   descriptionHTML,
@@ -21,12 +22,15 @@ const RepositoryItem = ({
   owner,
   stargazers
 }) => {
+  const [ starRepo ]   = useMutation(STAR_REPOSITORY)
   return (
     <div>
       <div className="RepositoryItem-title">
         <h2><Link href={url}>{name}</Link></h2>
         <div className="RepositoryItem-title-action">
-          {stargazers.totalCount} Stars
+          <button onClick={() => {
+            starRepo({ variables: { starrableId: id } })
+          }}>{stargazers.totalCount} Stars </button>
         </div>
       </div>
 
