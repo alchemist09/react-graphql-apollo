@@ -1,6 +1,8 @@
 import { gql, useMutation } from '@apollo/client'
 import Link from "../../Link"
 import '../../index.css'
+import Loading from '../../Loading'
+import ErrorMessage from '../../Error'
 
 const STAR_REPOSITORY = gql`
   mutation($id: ID!) {
@@ -22,7 +24,9 @@ const RepositoryItem = ({
   owner,
   stargazers
 }) => {
-  const [ starRepo ]   = useMutation(STAR_REPOSITORY)
+  const [ starRepo, { loading, error } ]   = useMutation(STAR_REPOSITORY)
+  if(loading) return <Loading />
+  if(error) return <ErrorMessage error={error} />
   return (
     <div>
       <div className="RepositoryItem-title">
