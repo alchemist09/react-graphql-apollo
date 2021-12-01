@@ -1,5 +1,17 @@
+import { gql } from '@apollo/client'
 import Link from "../../Link"
 import '../../index.css'
+
+const STAR_REPOSITORY = gql`
+  mutation($id: ID!) {
+    addStar(input: { starrableId: $id }) {
+      starrable {
+        id
+        viewerHasSrarred
+      }
+    }
+  }
+`
 
 const RepositoryItem = ({
   name,
