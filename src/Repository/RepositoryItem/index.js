@@ -9,7 +9,7 @@ const STAR_REPOSITORY = gql`
     addStar(input: { starrableId: $id }) {
       starrable {
         id
-        viewerHasSrarred
+        viewerHasStarred
       }
     }
   }
