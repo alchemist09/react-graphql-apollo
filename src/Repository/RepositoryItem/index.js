@@ -24,7 +24,7 @@ const RepositoryItem = ({
   owner,
   stargazers
 }) => {
-  const [ starRepo, { loading, error } ]   = useMutation(STAR_REPOSITORY)
+  const [ starRepo, { loading, error } ]   = useMutation(STAR_REPOSITORY, { variables: { id } })
   if(loading) return <Loading />
   if(error) return <ErrorMessage error={error} />
   return (
@@ -33,7 +33,7 @@ const RepositoryItem = ({
         <h2><Link href={url}>{name}</Link></h2>
         <div className="RepositoryItem-title-action">
           <button onClick={() => {
-            starRepo({ variables: { id } })
+            starRepo()
           }}>{stargazers.totalCount} Stars </button>
         </div>
       </div>
