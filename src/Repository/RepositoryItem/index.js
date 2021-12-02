@@ -33,7 +33,7 @@ const RepositoryItem = ({
         <h2><Link href={url}>{name}</Link></h2>
         <div className="RepositoryItem-title-action">
           <button onClick={() => {
-            starRepo({ variables: { id: id } })
+            starRepo({ variables: { id } })
           }}>{stargazers.totalCount} Stars </button>
         </div>
       </div>
