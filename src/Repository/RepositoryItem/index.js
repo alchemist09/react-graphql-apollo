@@ -11,6 +11,7 @@ const STAR_REPOSITORY = gql`
       starrable {
         id
         viewerHasStarred
+        stargazerCount
       }
     }
   }
@@ -25,9 +26,17 @@ const RepositoryItem = ({
   owner,
   stargazers
 }) => {
-  const [ starRepo, { loading, error } ]   = useMutation(STAR_REPOSITORY, { variables: { id } })
+  const [ starRepo, { data, loading, error } ] = useMutation(STAR_REPOSITORY, { variables: { id } })
   if(loading) return <Loading />
   if(error) return <ErrorMessage error={error} />
+
+  let numStars
+  if(data) {
+    console.log(data)
+    const { stargazerCount } = data.addStar.starrable
+    numStars = stargazerCount
+  }
+
   return (
     <div>
       <div className="RepositoryItem-title">
@@ -35,7 +44,7 @@ const RepositoryItem = ({
         <div className="RepositoryItem-title-action">
           <Button onClick={starRepo}
                   className={'RepositoryItem-title-action'}
-          >{stargazers.totalCount} Stars</Button>
+          >{ numStars ? numStars : stargazers.totalCount} Stars</Button>
         </div>
       </div>
 
