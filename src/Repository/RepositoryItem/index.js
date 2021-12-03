@@ -3,6 +3,7 @@ import Link from "../../Link"
 import '../../index.css'
 import Loading from '../../Loading'
 import ErrorMessage from '../../Error'
+import Button from '../../Button'
 
 const STAR_REPOSITORY = gql`
   mutation($id: ID!) {
@@ -32,9 +33,9 @@ const RepositoryItem = ({
       <div className="RepositoryItem-title">
         <h2><Link href={url}>{name}</Link></h2>
         <div className="RepositoryItem-title-action">
-          <button onClick={() => {
-            starRepo()
-          }}>{stargazers.totalCount} Stars </button>
+          <Button onClick={starRepo}
+                  className={'RepositoryItem-title-action'}
+          >{stargazers.totalCount} Stars</Button>
         </div>
       </div>
 
