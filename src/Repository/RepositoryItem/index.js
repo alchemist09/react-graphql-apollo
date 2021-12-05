@@ -19,10 +19,12 @@ const STAR_REPOSITORY = gql`
 
 const REMOVE_STAR = gql`
   mutation($id: ID!) {
-    removeStar(input: { starrable: $id}) {
-      id
-      viewerHasStarred
-      stargazeCount
+    removeStar(input: { starrableId: $id}) {
+      starrable {
+        id
+        viewerHasStarred
+        stargazeCount
+      }
     }
   }
 `
