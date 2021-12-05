@@ -40,7 +40,11 @@ const RepositoryItem = ({
   viewerHasStarred
 }) => {
   const [ starRepo, { data, loading, error } ] = useMutation(STAR_REPOSITORY, { variables: { id } })
-  const [ unStarRepo, { data2, loading2, error2 } ] = useMutation(REMOVE_STAR, { variables: { id } })
+  const [ unStarRepo, { 
+    data: data2, 
+    loading: loading2, 
+    error: error2 
+  } ] = useMutation(REMOVE_STAR, { variables: { id } })
 
   if(loading || loading2) return <Loading />
   if(error || error2) return <ErrorMessage error={error} />
