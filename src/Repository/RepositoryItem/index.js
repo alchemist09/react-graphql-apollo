@@ -54,7 +54,7 @@ const RepositoryItem = ({
         <div className="RepositoryItem-title-action">
           <Button onClick={starRepo}
                   className={'RepositoryItem-title-action'}
-          >{ numStars ? numStars : stargazers.totalCount} Stars</Button>
+          >{ numStars ? numStars : stargazers.totalCount} Star</Button>
         </div>
       </div>
 
