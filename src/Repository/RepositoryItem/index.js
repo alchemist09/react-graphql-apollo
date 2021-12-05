@@ -34,14 +34,17 @@ const RepositoryItem = ({
   descriptionHTML,
   primaryLanguage,
   owner,
-  stargazers
+  stargazers,
+  viewerHasStarred
 }) => {
   const [ starRepo, { data, loading, error } ] = useMutation(STAR_REPOSITORY, { variables: { id } })
-  if(loading) return <Loading />
-  if(error) return <ErrorMessage error={error} />
+  const [ unStarRepo, { data2, loading2, error2 } ] = useMutation(REMOVE_STAR, { variables: { id } })
+
+  if(loading || loading2) return <Loading />
+  if(error || error2) return <ErrorMessage error={error} />
 
   let numStars
-  if(data) {
+  if(data || data2) {
     console.log(data)
     const { stargazerCount } = data.addStar.starrable
     numStars = stargazerCount
@@ -52,9 +55,14 @@ const RepositoryItem = ({
       <div className="RepositoryItem-title">
         <h2><Link href={url}>{name}</Link></h2>
         <div className="RepositoryItem-title-action">
-          <Button onClick={starRepo}
-                  className={'RepositoryItem-title-action'}
-          >{ numStars ? numStars : stargazers.totalCount} Star</Button>
+          {viewerHasStarred ? 
+            <Button onClick={unStarRepo}
+                    className={'RepositoryItem-title-action'}
+            >{ numStars ? numStars : stargazers.totalCount} Unstar</Button> : 
+            <Button onClick={starRepo}
+                    className={'RepositoryItem-title-action'}
+            >{ numStars ? numStars : stargazers.totalCount} Star</Button>}
+          
         </div>
       </div>
 
