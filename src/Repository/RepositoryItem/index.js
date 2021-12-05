@@ -47,7 +47,10 @@ const RepositoryItem = ({
   } ] = useMutation(REMOVE_STAR, { variables: { id } })
 
   if(loading || loading2) return <Loading />
-  if(error || error2) return <ErrorMessage error={error} />
+  if(error || error2) {
+    const currentError = error ? error : error2
+    return <ErrorMessage error={currentError} />
+  }
 
   let numStars = stargazers.totalCount
   if(data && data2 === undefined) {
