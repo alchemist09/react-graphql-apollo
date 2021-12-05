@@ -23,7 +23,7 @@ const REMOVE_STAR = gql`
       starrable {
         id
         viewerHasStarred
-        stargazeCount
+        stargazerCount
       }
     }
   }
