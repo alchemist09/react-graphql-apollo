@@ -49,12 +49,19 @@ const RepositoryItem = ({
   if(loading || loading2) return <Loading />
   if(error || error2) return <ErrorMessage error={error} />
 
-  let numStars
-  if(data || data2) {
+  let numStars = stargazers.totalCount
+  if(data && data2 === undefined) {
     if(data) console.log(data)
     if(data2) console.log(data2)
-    const { stargazerCount } =  data ? data.addStar.starrable : data2.removeStar.starrable
+    const { stargazerCount } = data.addStar.starrable
     numStars = stargazerCount
+  } else {
+    if(data2) {
+      if(data) console.log(data)
+      if(data2) console.log(data2)
+      const { stargazerCount } = data2.removeStar.starrable
+      numStars = stargazerCount
+    }
   }
 
   return (
@@ -65,10 +72,10 @@ const RepositoryItem = ({
           {viewerHasStarred ? 
             <Button onClick={unStarRepo}
                     className={'RepositoryItem-title-action'}
-            >{ numStars ? numStars : stargazers.totalCount} Unstar</Button> : 
+            >{ numStars } Unstar</Button> : 
             <Button onClick={starRepo}
                     className={'RepositoryItem-title-action'}
-            >{ numStars ? numStars : stargazers.totalCount} Star</Button>}
+            >{ numStars } Star</Button>}
           
         </div>
       </div>
