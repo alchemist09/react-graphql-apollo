@@ -47,8 +47,9 @@ const RepositoryItem = ({
 
   let numStars
   if(data || data2) {
-    console.log(data)
-    const { stargazerCount } = data.addStar.starrable
+    if(data) console.log(data)
+    if(data2) console.log(data2)
+    const { stargazerCount } =  data ? data.addStar.starrable : data2.removeStar.starrable
     numStars = stargazerCount
   }
 
