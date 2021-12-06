@@ -55,22 +55,6 @@ const RepositoryItem = ({
   let numStars = stargazers.totalCount
   let afterStarCount
   let unstarCount
-  if(data && data2 === undefined) {
-    if(data) console.log(data)
-    if(data2) console.log(data2)
-    const { stargazerCount: addStarCount } = data.addStar.starrable
-    numStars = addStarCount
-    afterStarCount = addStarCount
-  } else {
-    if(data2) {
-      if(data) console.log(data)
-      if(data2) console.log(data2)
-      const { stargazerCount: removeStarCount } = data2.removeStar.starrable
-      numStars = removeStarCount
-      afterStarCount = data.addStar.starrable.stargazerCount
-      unstarCount = removeStarCount
-    }
-  }
 
   console.log(`**** NAME ******: ${name}`)
   console.log(`stargazers.totalCount: ${stargazers.totalCount}`)
@@ -87,10 +71,10 @@ const RepositoryItem = ({
           {viewerHasStarred ? 
             <Button onClick={unStarRepo}
                     className={'RepositoryItem-title-action'}
-            >{ afterStarCount ? afterStarCount : stargazers.totalCount } Unstar</Button> : 
+            >{ data ? data.addStar.starrable.stargazerCount : stargazers.totalCount } Unstar</Button> : 
             <Button onClick={starRepo}
                     className={'RepositoryItem-title-action'}
-            >{ unstarCount ? unstarCount : stargazers.totalCount } Star</Button>}
+            >{ data2 ? data2.removeStar.starrable.stargazerCount : stargazers.totalCount } Star</Button>}
           
         </div>
       </div>
