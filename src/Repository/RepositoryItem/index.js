@@ -52,17 +52,6 @@ const RepositoryItem = ({
     return <ErrorMessage error={currentError} />
   }
 
-  let numStars = stargazers.totalCount
-  let afterStarCount
-  let unstarCount
-
-  console.log(`**** NAME ******: ${name}`)
-  console.log(`stargazers.totalCount: ${stargazers.totalCount}`)
-  console.log(`numStars: ${numStars}`)
-  console.log(`afterStarCount: ${afterStarCount}`)
-  console.log(`unstarCount: ${unstarCount}`)
-  console.log('SOME RANDOM LINE___________________')
-
   return (
     <div>
       <div className="RepositoryItem-title">
