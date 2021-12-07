@@ -28,6 +28,9 @@ const REMOVE_STAR = gql`
     }
   }
 `
+const updateAddStar = () => {
+
+}
 
 const RepositoryItem = ({
   id,
@@ -39,7 +42,10 @@ const RepositoryItem = ({
   stargazers,
   viewerHasStarred
 }) => {
-  const [ starRepo, { data, loading, error } ] = useMutation(STAR_REPOSITORY, { variables: { id } })
+  const [ starRepo, { data, loading, error } ] = useMutation(
+    STAR_REPOSITORY, 
+    { variables: { id } },
+    updateAddStar)
   const [ unStarRepo, { 
     data: data2, 
     loading: loading2, 
