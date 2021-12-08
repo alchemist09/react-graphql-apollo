@@ -35,6 +35,18 @@ const updateAddStar = (cache, { data: { addStar } }) => {
     id: `Repository:${repo_id}`,
     fragment: REPOSITORY_FRAGMENT
   })
+
+  const totalCount = repo.starga.totalCount + 1
+  cache.writeFragment({
+    id: `Repository:${repo_id}`,
+    fragment: REPOSITORY_FRAGMENT,
+    data: {
+      stargazers: {
+        ...repo.stargazers,
+        totalCount
+      }
+    }
+  })
 }
 
 const RepositoryItem = ({
