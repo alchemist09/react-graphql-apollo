@@ -4,6 +4,7 @@ import '../../index.css'
 import Loading from '../../Loading'
 import ErrorMessage from '../../Error'
 import Button from '../../Button'
+import { REPOSITORY_FRAGMENT } from '..'
 
 const STAR_REPOSITORY = gql`
   mutation($id: ID!) {
@@ -28,8 +29,12 @@ const REMOVE_STAR = gql`
     }
   }
 `
-const updateAddStar = () => {
-
+const updateAddStar = (cache, { data: { addStar } }) => {
+  const repo_id = addStar.starrable.id
+  const repo = cache.readFragment({
+    id: `Repository:${repo_id}`,
+    fragment: REPOSITORY_FRAGMENT
+  })
 }
 
 const RepositoryItem = ({
