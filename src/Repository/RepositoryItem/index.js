@@ -29,6 +29,18 @@ const REMOVE_STAR = gql`
     }
   }
 `
+
+const WATCH_REPOSITORY = gql`
+  mutation($id: ID!,  $viewerSubscription: SubscriptionState!) {
+    updateSubscription(input: { subscribableId: $id, state: $viewrSubscription }) {
+      subscribable {
+        id
+        viewerSubsciption
+      }
+    }
+  }
+`
+
 const updateAddStar = (cache, { data: { addStar } }) => {
   const repo_id = addStar.starrable.id
   const repo = cache.readFragment({
