@@ -53,6 +53,7 @@ const updateAddStar = (cache, { data: { addStar } }) => {
     id: `Repository:${repo_id}`,
     fragment: REPOSITORY_FRAGMENT,
     data: {
+      ...repo,
       stargazers: {
         ...repo.stargazers,
         totalCount
