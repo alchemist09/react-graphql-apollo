@@ -69,16 +69,21 @@ const RepositoryItem = ({
   primaryLanguage,
   owner,
   stargazers,
-  viewerHasStarred
+  viewerHasStarred,
+  viewerSubscription
 }) => {
   const [ starRepo, { data, loading, error } ] = useMutation(STAR_REPOSITORY, { variables: { id } },
     updateAddStar)
   const [ unStarRepo, { data: data2, loading: loading2, error: error2 } ] = useMutation(REMOVE_STAR, 
                                                                                        { variables: { id } })
+  const [ updateSubscription, { data: data3, loading: loading3, error: error3 }] = useMutation(WATCH_REPOSITORY)
 
-  if(loading || loading2) return <Loading />
-  if(error || error2) {
-    const currentError = error ? error : error2
+  if(loading || loading2 || loading3) return <Loading />
+  if(error || error2 || error3) {
+    let currentError
+    if(error) currentError = error
+    if(error2) currentError = error2
+    if(error3) currentError = error3
     return <ErrorMessage error={currentError} />
   }
 
@@ -94,7 +99,9 @@ const RepositoryItem = ({
             <Button onClick={starRepo}
                     className={'RepositoryItem-title-action'}
             >{ data2 ? data2.removeStar.starrable.stargazerCount : stargazers.totalCount } Star</Button>}
-          
+            {viewerSubscription === 'SUBSCRIBED' ?
+            <Button onClick={updateSubscription} >Unwatch</Button> : <Button onClick={updateSubscription}>Watch</Button>
+          }
         </div>
       </div>
 
