@@ -66,6 +66,27 @@ const SUBSCRIPTION_STATES = {
   UNSUBSCRIBED: 'UNSUBSCRIBED'
 }
 
+const updateWatch = (cache, { data: { updateSubscription }}) => {
+  const { id: subscribable_id, viewerSubscription } = updateSubscription.subscribable
+  const subscribable = cache.readFragment({
+    id: `Repository:${subscribable_id}`,
+    fragment: REPOSITORY_FRAGMENT
+  })
+  let { totalCount } = subscribable.watchers
+  totalCount = (viewerSubscription === SUBSCRIPTION_STATES.SUBSCRIBED) ? totalCount + 1 : totalCount - 1
+
+  cache.writeFragment({
+    id: `Repository:${subscribable_id}`,
+    fragment: REPOSITORY_FRAGMENT,
+    data: {
+      watchers: {
+        ...subscribable.watchers,
+        totalCount
+      }
+    }
+  })
+}
+
 const isWatch = viewerSubscription => viewerSubscription === SUBSCRIPTION_STATES.SUBSCRIBED
 
 const RepositoryItem = ({
@@ -90,7 +111,8 @@ const RepositoryItem = ({
                                                                                          viewerSubscription: isWatch(viewerSubscription) 
                                                                                            ? SUBSCRIPTION_STATES.UNSUBSCRIBED 
                                                                                            : SUBSCRIPTION_STATES.SUBSCRIBED
-                                                                                       }})
+                                                                                       }}, 
+                                                                                       updateWatch)
 
   if(loading || loading2 || loading3) return <Loading />
   if(error || error2 || error3) {
