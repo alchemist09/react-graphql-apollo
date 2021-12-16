@@ -61,6 +61,13 @@ const updateAddStar = (cache, { data: { addStar } }) => {
   })
 }
 
+const SUBSCRIPTION_STATES = {
+  SUBSCRIBED: 'SUBSCRIBED',
+  UNSUBSCRIBED: 'UNSUBSCRIBED'
+}
+
+const isWatch = viewerSubscription => viewerSubscription === SUBSCRIPTION_STATES.SUBSCRIBED
+
 const RepositoryItem = ({
   id,
   name,
