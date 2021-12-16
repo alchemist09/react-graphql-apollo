@@ -32,10 +32,10 @@ const REMOVE_STAR = gql`
 
 const WATCH_REPOSITORY = gql`
   mutation($id: ID!,  $viewerSubscription: SubscriptionState!) {
-    updateSubscription(input: { subscribableId: $id, state: $viewrSubscription }) {
+    updateSubscription(input: { subscribableId: $id, state: $viewerSubscription }) {
       subscribable {
         id
-        viewerSubsciption
+        viewerSubscription
       }
     }
   }
