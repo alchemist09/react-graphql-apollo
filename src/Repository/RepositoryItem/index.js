@@ -101,8 +101,7 @@ const RepositoryItem = ({
   viewerSubscription,
   watchers
 }) => {
-  const [ starRepo, { data, loading, error } ] = useMutation(STAR_REPOSITORY, { variables: { id } },
-    updateAddStar)
+  const [ starRepo, { data, loading, error } ] = useMutation(STAR_REPOSITORY, { variables: { id }, update: updateAddStar })
   const [ unStarRepo, { data: data2, loading: loading2, error: error2 } ] = useMutation(REMOVE_STAR, 
                                                                                        { variables: { id } })
   const [ updateSubscription, { data: data3, loading: loading3, error: error3 }] = useMutation(WATCH_REPOSITORY, 
@@ -111,8 +110,8 @@ const RepositoryItem = ({
                                                                                          viewerSubscription: isWatch(viewerSubscription) 
                                                                                            ? SUBSCRIPTION_STATES.UNSUBSCRIBED 
                                                                                            : SUBSCRIPTION_STATES.SUBSCRIBED
-                                                                                       }}, 
-                                                                                       updateWatch)
+                                                                                       }, 
+                                                                                       update: updateWatch })
 
   if(loading || loading2 || loading3) return <Loading />
   if(error || error2 || error3) {
