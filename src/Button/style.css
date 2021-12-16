@@ -4,6 +4,7 @@
   cursor: pointer;
   transition: color 0.25s ease-in-out;
   transition: background 0.25 ease-in-out;
+  margin-right: 10px;
 }
 
 .Button_black {
