@@ -108,10 +108,10 @@ const RepositoryItem = ({
         <div className="RepositoryItem-title-action">
           {viewerHasStarred ? 
             <Button onClick={unStarRepo}
-                    className={'RepositoryItem-title-action'}
+                    className="RepositoryItem-title-action"
             >{ data ? data.addStar.starrable.stargazerCount : stargazers.totalCount } Unstar</Button> : 
             <Button onClick={starRepo}
-                    className={'RepositoryItem-title-action'}
+                    className="RepositoryItem-title-action"
             >{ data2 ? data2.removeStar.starrable.stargazerCount : stargazers.totalCount } Star</Button>}
             <Button onClick={updateSubscription} className="RepositoryItem-title-action">
               {watchers.totalCount}{' '}
