@@ -4,6 +4,7 @@ import RepositoryList, { REPOSITORY_FRAGMENT } from '../Repository'
 import ErrorMessage from '../Error'
 
 const GET_REPOSITORIES_OF_CURRENT_USER = gql`
+  ${REPOSITORY_FRAGMENT}
   {
     viewer {
       login
@@ -15,7 +16,6 @@ const GET_REPOSITORIES_OF_CURRENT_USER = gql`
           }
         }
       }
-      ${REPOSITORY_FRAGMENT}
     }
   }
 `
