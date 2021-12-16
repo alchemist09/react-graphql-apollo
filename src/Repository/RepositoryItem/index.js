@@ -87,7 +87,7 @@ const RepositoryItem = ({
   const [ updateSubscription, { data: data3, loading: loading3, error: error3 }] = useMutation(WATCH_REPOSITORY, 
                                                                                        { variables: {
                                                                                          id,
-                                                                                         state: isWatch(viewerSubscription) 
+                                                                                         viewerSubscription: isWatch(viewerSubscription) 
                                                                                            ? SUBSCRIPTION_STATES.UNSUBSCRIBED 
                                                                                            : SUBSCRIPTION_STATES.SUBSCRIBED
                                                                                        }})
