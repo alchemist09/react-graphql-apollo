@@ -77,13 +77,20 @@ const RepositoryItem = ({
   owner,
   stargazers,
   viewerHasStarred,
-  viewerSubscription
+  viewerSubscription,
+  watchers
 }) => {
   const [ starRepo, { data, loading, error } ] = useMutation(STAR_REPOSITORY, { variables: { id } },
     updateAddStar)
   const [ unStarRepo, { data: data2, loading: loading2, error: error2 } ] = useMutation(REMOVE_STAR, 
                                                                                        { variables: { id } })
-  const [ updateSubscription, { data: data3, loading: loading3, error: error3 }] = useMutation(WATCH_REPOSITORY)
+  const [ updateSubscription, { data: data3, loading: loading3, error: error3 }] = useMutation(WATCH_REPOSITORY, 
+                                                                                       { variables: {
+                                                                                         id,
+                                                                                         state: isWatch(viewerSubscription) 
+                                                                                           ? SUBSCRIPTION_STATES.UNSUBSCRIBED 
+                                                                                           : SUBSCRIPTION_STATES.SUBSCRIBED
+                                                                                       }})
 
   if(loading || loading2 || loading3) return <Loading />
   if(error || error2 || error3) {
@@ -106,9 +113,10 @@ const RepositoryItem = ({
             <Button onClick={starRepo}
                     className={'RepositoryItem-title-action'}
             >{ data2 ? data2.removeStar.starrable.stargazerCount : stargazers.totalCount } Star</Button>}
-            {viewerSubscription === 'SUBSCRIBED' ?
-            <Button onClick={updateSubscription} >Unwatch</Button> : <Button onClick={updateSubscription}>Watch</Button>
-          }
+            <Button onClick={updateSubscription} className="RepositoryItem-title-action">
+              {watchers.totalCount}{' '}
+              {isWatch(viewerSubscription) ? 'Unwatch' : 'Watch'}
+            </Button>
         </div>
       </div>
 
