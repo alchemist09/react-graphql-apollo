@@ -79,6 +79,7 @@ const updateWatch = (cache, { data: { updateSubscription }}) => {
     id: `Repository:${subscribable_id}`,
     fragment: REPOSITORY_FRAGMENT,
     data: {
+      ...subscribable,
       watchers: {
         ...subscribable.watchers,
         totalCount
