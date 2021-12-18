@@ -97,6 +97,7 @@ const updateWatch = (cache, { data: { updateSubscription }}) => {
     return {
       ...data,
       watchers: {
+        ...data.watchers,
         totalCount
       }
     }
