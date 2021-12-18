@@ -66,7 +66,7 @@ const updateAddStar = (cache, { data: { addStar } }) => {
     fragment: REPOSITORY_FRAGMENT
   }, 
   data => {
-    const { totalCount } = data.stargazers.totalCount + 1
+    const totalCount  = data.stargazers.totalCount + 1
     return {
       ...data,
       stargazers: {
