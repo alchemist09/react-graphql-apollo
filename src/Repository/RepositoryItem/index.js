@@ -43,19 +43,34 @@ const WATCH_REPOSITORY = gql`
 
 const updateAddStar = (cache, { data: { addStar } }) => {
   const repo_id = addStar.starrable.id
-  const repo = cache.readFragment({
+  // const repo = cache.readFragment({
+  //   id: `Repository:${repo_id}`,
+  //   fragment: REPOSITORY_FRAGMENT
+  // })
+
+  // const totalCount = repo.stargazers.totalCount + 1
+  // cache.writeFragment({
+  //   id: `Repository:${repo_id}`,
+  //   fragment: REPOSITORY_FRAGMENT,
+  //   data: {
+  //     ...repo,
+  //     stargazers: {
+  //       ...repo.stargazers,
+  //       totalCount
+  //     }
+  //   }
+  // })
+
+  cache.updateFragment({
     id: `Repository:${repo_id}`,
     fragment: REPOSITORY_FRAGMENT
-  })
-
-  const totalCount = repo.stargazers.totalCount + 1
-  cache.writeFragment({
-    id: `Repository:${repo_id}`,
-    fragment: REPOSITORY_FRAGMENT,
-    data: {
-      ...repo,
+  }, 
+  data => {
+    const { totalCount } = data.stargazers.totalCount + 1
+    return {
+      ...data,
       stargazers: {
-        ...repo.stargazers,
+        ...data.stargazers,
         totalCount
       }
     }
