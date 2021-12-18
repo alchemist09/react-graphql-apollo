@@ -134,7 +134,6 @@ const RepositoryItem = ({
   const [
     updateSubscription,
     {
-      loading: loading3,
       error: error3
     }
   ] = useMutation(WATCH_REPOSITORY,
@@ -161,7 +160,7 @@ const RepositoryItem = ({
     }
   )
 
-  if(loading || loading2 || loading3) return <Loading />
+  if(loading || loading2) return <Loading />
   if(error || error2 || error3) {
     let currentError
     if(error) currentError = error
