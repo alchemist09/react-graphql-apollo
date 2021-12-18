@@ -119,7 +119,19 @@ const RepositoryItem = ({
         ? SUBSCRIPTION_STATES.UNSUBSCRIBED 
         : SUBSCRIPTION_STATES.SUBSCRIBED
       }, 
-      update: updateWatch 
+      update: updateWatch,
+      optimisticResponse: {
+        updateSubscription: {
+          __typename: "Mutation",
+          subscribable: {
+            __typename: "Repository",
+            id,
+            viewerSubscription: isWatch(viewerSubscription)
+              ? SUBSCRIPTION_STATES.SUBSCRIBED
+              : SUBSCRIPTION_STATES.UNSUBSCRIBED
+          }
+        }
+      }
     }
   )
 
