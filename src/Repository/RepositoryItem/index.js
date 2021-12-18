@@ -69,24 +69,6 @@ const SUBSCRIPTION_STATES = {
 
 const updateWatch = (cache, { data: { updateSubscription }}) => {
   const { id: subscribable_id, viewerSubscription } = updateSubscription.subscribable
-  // const subscribable = cache.readFragment({
-  //   id: `Repository:${subscribable_id}`,
-  //   fragment: REPOSITORY_FRAGMENT
-  // })
-  // let { totalCount } = subscribable.watchers
-  // totalCount = (viewerSubscription === SUBSCRIPTION_STATES.SUBSCRIBED) ? totalCount + 1 : totalCount - 1
-
-  // cache.writeFragment({
-  //   id: `Repository:${subscribable_id}`,
-  //   fragment: REPOSITORY_FRAGMENT,
-  //   data: {
-  //     ...subscribable,
-  //     watchers: {
-  //       ...subscribable.watchers,
-  //       totalCount
-  //     }
-  //   }
-  // })
 
   cache.updateFragment({
     id: `Repository:${subscribable_id}`,
