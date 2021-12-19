@@ -133,10 +133,12 @@ const RepositoryItem = ({
       variables: { id },
       optimisticResponse: {
         removeStar: {
-          __typename: "Repository",
-          id,
-          viewerHasStarred,
-          stargazerCount: stargazers.totalCount - 1
+          starrable: {
+            __typename: "Repository",
+            id,
+            viewerHasStarred,
+            stargazerCount: stargazers.totalCount - 1
+          }
         }
       }
     }
