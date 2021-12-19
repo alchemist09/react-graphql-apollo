@@ -108,7 +108,17 @@ const RepositoryItem = ({
     STAR_REPOSITORY,
     {
       variables: { id },
-      update: updateAddStar
+      update: updateAddStar,
+      optimisticResponse: {
+        addStar: {
+          __typename: "Repository",
+          starrable: {
+            id,
+            viewerHasStarred,
+            stargazerCount: stargazers.totalCount + 1
+          }
+        }
+      }
     }
   )
 
@@ -122,7 +132,15 @@ const RepositoryItem = ({
   ] = useMutation(
     REMOVE_STAR,
     {
-      variables: { id }
+      variables: { id },
+      optimisticResponse: {
+        removeStar: {
+          __typename: "Repository",
+          id,
+          viewerHasStarred,
+          stargazerCount: stargazers.totalCount - 1
+        }
+      }
     }
   )
 
