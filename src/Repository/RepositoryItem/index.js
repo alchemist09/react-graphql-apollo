@@ -1,7 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import Link from "../../Link"
 import '../../index.css'
-import Loading from '../../Loading'
 import ErrorMessage from '../../Error'
 import Button from '../../Button'
 import { REPOSITORY_FRAGMENT } from '..'
