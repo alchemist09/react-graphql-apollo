@@ -101,7 +101,6 @@ const RepositoryItem = ({
   const [
     starRepo, 
     { data,
-      loading,
       error
     }
   ] = useMutation(
@@ -126,7 +125,6 @@ const RepositoryItem = ({
     unStarRepo,
     {
       data: data2,
-      loading: loading2,
       error: error2
     }
   ] = useMutation(
@@ -173,7 +171,6 @@ const RepositoryItem = ({
     }
   )
 
-  if(loading || loading2) return <Loading />
   if(error || error2 || error3) {
     let currentError
     if(error) currentError = error
