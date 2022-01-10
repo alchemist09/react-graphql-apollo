@@ -9,7 +9,7 @@ const GET_REPOSITORIES_OF_CURRENT_USER = gql`
     viewer {
       login
       name
-      repositories(first: 5, orderBy: { direction: DESC, field: STARGAZERS }) {
+      repositories(first: 5, orderBy: { direction: DESC, field: STARGAZERS }, after: $cursor) {
         edges {
           node {
             ...repository
