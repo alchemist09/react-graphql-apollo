@@ -25,7 +25,7 @@ const GET_REPOSITORIES_OF_CURRENT_USER = gql`
 `
 
 const Profile = () => {
-  const { loading, error, data } = useQuery(GET_REPOSITORIES_OF_CURRENT_USER)
+  const { loading, error, data, fetchMore } = useQuery(GET_REPOSITORIES_OF_CURRENT_USER)
   
   if(loading) {
     <Loading />
@@ -37,7 +37,7 @@ const Profile = () => {
   const { viewer } = data
 
   return (
-    <RepositoryList repositories={viewer.repositories} />
+    <RepositoryList repositories={viewer.repositories} fetchMore={fetchMore} />
   )
 }
 
