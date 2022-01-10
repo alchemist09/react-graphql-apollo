@@ -5,7 +5,7 @@ import ErrorMessage from '../Error'
 
 const GET_REPOSITORIES_OF_CURRENT_USER = gql`
   ${REPOSITORY_FRAGMENT}
-  {
+  query($cursor: String){
     viewer {
       login
       name
@@ -14,6 +14,10 @@ const GET_REPOSITORIES_OF_CURRENT_USER = gql`
           node {
             ...repository
           }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
         }
       }
     }
