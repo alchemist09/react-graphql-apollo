@@ -13,7 +13,7 @@ const RepositoryList = ({ repositories, fetchMore }) => {
       }
 
       {
-        repositories.pageInfo.hasNexPage && (
+        repositories.pageInfo.hasNextPage && (
           <button
             type="button"
             onClick={() => {
