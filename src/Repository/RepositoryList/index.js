@@ -17,7 +17,11 @@ const RepositoryList = ({ repositories, fetchMore }) => {
           <button
             type="button"
             onClick={() => {
-              fetchMore()
+              fetchMore({
+                variables: {
+                  cursor: repositories.pageInfo.endCursor
+                }
+              })
             }}
           >More Repos</button>
         )
