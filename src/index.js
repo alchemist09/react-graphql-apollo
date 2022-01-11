@@ -51,6 +51,23 @@ const cache = new InMemoryCache({
           }
         }
       }
+    },
+    User: {
+      fields: {
+        keyArgs: false,
+        repositories: {
+          keyArgs: false,
+          merge(existing={}, incoming) {
+            console.log("REPO EXISTING: ", existing)
+            console.log("REPO INCOMING: ", incoming)
+            console.log("typeof edges: ", typeof incoming.edges)
+            return {
+              ...existing,
+              ...incoming
+            }
+          }
+        }
+      }
     }
   }
 })
