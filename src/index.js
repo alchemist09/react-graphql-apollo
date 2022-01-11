@@ -32,9 +32,32 @@ const httpLink = new HttpLink({
   }
 })
 
+const cache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        viewer: {
+          keyArgs: false,
+          merge(existing={}, incoming) {
+            console.log("EXISTING: ", existing)
+            console.log("INCOMING: ", incoming)
+            console.log("typeof INCOMING: ", typeof incoming.login)
+            console.log("REPO EDGES: ", incoming.repositories)
+            console.log("hasOwnProperty - repos: ", existing.hasOwnProperty("repositories"))
+            return {
+              ...existing,
+              ...incoming
+            }
+          }
+        }
+      }
+    }
+  }
+})
+
 const client = new ApolloClient({
   link: from([errorLink, httpLink]),
-  cache: new InMemoryCache()
+  cache
 })
 
 ReactDOM.render(
