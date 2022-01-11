@@ -1,26 +1,6 @@
 import RepositoryItem from "../RepositoryItem"
 import '../../index.css'
 
-const mergeQueryResults = (previousResults, { fetchMoreResult }) => {
-  if(!fetchMoreResult) {
-    return previousResults
-  }
-
-  return {
-    ...previousResults,
-    viewer: {
-      ...previousResults.viewer,
-      repositories: {
-        ...previousResults.viewer.repositories,
-        ...fetchMoreResult.viewer.repositories,
-        edges: [
-          ...previousResults.viewer.repositories.edges,
-          ...fetchMoreResult.viewer.repositories.edges
-        ]
-      }
-    }
-  }
-}
 
 const RepositoryList = ({ repositories, fetchMore }) => {
   return (
@@ -41,8 +21,7 @@ const RepositoryList = ({ repositories, fetchMore }) => {
               fetchMore({
                 variables: {
                   cursor: repositories.pageInfo.endCursor
-                },
-                updateQuery: mergeQueryResults
+                }
               })
             }}
           >More Repos</button>
