@@ -68,6 +68,21 @@ const cache = new InMemoryCache({
           }
         }
       }
+    },
+    RepositoryConnection: {
+      fields: {
+        keyArgs: false,
+        edges: {
+          merge(existing=[], incoming) {
+            console.log("CONNECTION EXISTING: ", existing)
+            console.log("CONNECTION INCOMING: ", incoming)
+            return [
+              ...existing,
+              ...incoming
+            ]
+          }
+        }
+      }
     }
   }
 })
