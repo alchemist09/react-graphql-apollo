@@ -28,7 +28,7 @@ const Profile = () => {
   const { loading, error, data, fetchMore } = useQuery(GET_REPOSITORIES_OF_CURRENT_USER)
   
   if(loading) {
-    <Loading />
+    return <Loading />
   }
 
   if(error) return <ErrorMessage error={error} />
