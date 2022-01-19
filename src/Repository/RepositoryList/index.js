@@ -1,8 +1,9 @@
 import RepositoryItem from "../RepositoryItem"
 import '../../index.css'
+import Loading from "../../Loading"
 
 
-const RepositoryList = ({ repositories, fetchMore }) => {
+const RepositoryList = ({ loading, repositories, fetchMore }) => {
   return (
     <>
       {
@@ -14,7 +15,8 @@ const RepositoryList = ({ repositories, fetchMore }) => {
       }
 
       {
-        repositories.pageInfo.hasNextPage && (
+        loading ? <Loading /> :
+        (repositories.pageInfo.hasNextPage && (
           <button
             type="button"
             onClick={() => {
@@ -25,7 +27,7 @@ const RepositoryList = ({ repositories, fetchMore }) => {
               })
             }}
           >More Repos</button>
-        )
+        ))
       }
     </>
   )
