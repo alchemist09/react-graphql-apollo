@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client'
+import { gql, useQuery, NetworkStatus } from '@apollo/client'
 import Loading from '../Loading'
 import RepositoryList, { REPOSITORY_FRAGMENT } from '../Repository'
 import ErrorMessage from '../Error'
@@ -25,9 +25,11 @@ const GET_REPOSITORIES_OF_CURRENT_USER = gql`
 `
 
 const Profile = () => {
-  const { loading, error, data, fetchMore } = useQuery(GET_REPOSITORIES_OF_CURRENT_USER)
+  const { loading, error, data, fetchMore, networkStatus } = useQuery(GET_REPOSITORIES_OF_CURRENT_USER, {
+    notifyOnNetworkStatusChange: true
+  })
   
-  if(loading) {
+  if(loading || (NetworkStatus.fetchMore === networkStatus)) {
     return <Loading />
   }
 
