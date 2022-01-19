@@ -1,6 +1,7 @@
 import RepositoryItem from "../RepositoryItem"
 import '../../index.css'
 import Loading from "../../Loading"
+import FetchMore from "../../FetchMore"
 
 
 const RepositoryList = ({ loading, repositories, fetchMore }) => {
@@ -14,21 +15,14 @@ const RepositoryList = ({ loading, repositories, fetchMore }) => {
         ))
       }
 
-      {
-        loading ? <Loading /> :
-        (repositories.pageInfo.hasNextPage && (
-          <button
-            type="button"
-            onClick={() => {
-              fetchMore({
-                variables: {
-                  cursor: repositories.pageInfo.endCursor
-                }
-              })
-            }}
-          >More Repos</button>
-        ))
-      }
+      <FetchMore
+        loading={loading}
+        fetchMore={fetchMore}
+        hasNextPage={repositories.pageInfo.hasNextPage}
+        variables={{ cursor: repositories.pageInfo.endCursor }}
+      >
+        Repos
+      </FetchMore>
     </>
   )
 }
