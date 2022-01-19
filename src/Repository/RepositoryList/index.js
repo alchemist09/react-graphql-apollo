@@ -1,6 +1,5 @@
 import RepositoryItem from "../RepositoryItem"
 import '../../index.css'
-import Loading from "../../Loading"
 import FetchMore from "../../FetchMore"
 
 
