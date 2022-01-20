@@ -1,4 +1,5 @@
 import Loading from "../Loading"
+import { ButtonUnobtrusive } from "../Button"
 
 const FetchMore = ({ loading, hasNextPage, fetchMore, variables, children }) => {
   return (
@@ -6,7 +7,7 @@ const FetchMore = ({ loading, hasNextPage, fetchMore, variables, children }) => 
     {  
       loading ? <Loading /> : (
         hasNextPage && 
-        <button
+        <ButtonUnobtrusive
           type="button"
           className="FetchMore-button"
           onClick={() => {
@@ -14,7 +15,7 @@ const FetchMore = ({ loading, hasNextPage, fetchMore, variables, children }) => 
               variables
             })
           }}
-        >More {children}</button>
+        >More {children}</ButtonUnobtrusive>
       )}
     </div>
   )
