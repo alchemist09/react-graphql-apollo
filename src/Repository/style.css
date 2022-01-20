@@ -4,9 +4,11 @@
 }
 
 .RepositoryItem-title {
-  display: flex;
-  justify-content: space-between;
   align-items: baseline;
+}
+
+.RepositoryItem-title > h2 {
+  text-align: center;
 }
 
 @media only screen and (max-device-width: 480px) {
@@ -16,14 +18,15 @@
   }
 }
 
-.RepositoryItem-title-action {
-  margin-left: 10px;
+.RepositoryItem-title-items {
+  width: 172px;
+  margin: 10px auto;
 }
 
 .RepositoryItem-description {
   margin: 10px 0;
-  display: flex;
-  justify-content: space-between;
+  text-align: center;
+
 }
 
 @media only screen and (max-device-width: 480px) {
@@ -45,8 +48,9 @@
 }
 
 .RepositoryItem-description-details {
-  text-align: right;
+  text-align: center;
   white-space: nowrap;
+  margin: 10px auto;
 }
 
 @media only screen and (max-device-width: 480px) {
