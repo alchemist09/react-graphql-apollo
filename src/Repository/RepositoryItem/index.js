@@ -1,9 +1,10 @@
 import { gql, useMutation } from '@apollo/client'
 import Link from "../../Link"
-import '../../index.css'
 import ErrorMessage from '../../Error'
 import Button from '../../Button'
 import { REPOSITORY_FRAGMENT } from '..'
+import '../../index.css'
+import '../style.css'
 
 const STAR_REPOSITORY = gql`
   mutation($id: ID!) {

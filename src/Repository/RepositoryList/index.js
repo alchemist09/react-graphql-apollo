@@ -1,6 +1,7 @@
 import RepositoryItem from "../RepositoryItem"
-import '../../index.css'
 import FetchMore from "../../FetchMore"
+import '../../index.css'
+import '../style.css'
 
 
 const RepositoryList = ({ loading, repositories, fetchMore }) => {
