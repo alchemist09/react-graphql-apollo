@@ -185,7 +185,7 @@ const RepositoryItem = ({
     <div>
       <div className="RepositoryItem-title">
         <h2><Link href={url}>{name}</Link></h2>
-        <div className="RepositoryItem-title-action">
+        <div className="RepositoryItem-title-items">
           {viewerHasStarred ? 
             <Button onClick={unStarRepo}
                     className="RepositoryItem-title-action"
