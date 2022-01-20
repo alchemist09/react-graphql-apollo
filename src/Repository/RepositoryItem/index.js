@@ -204,7 +204,7 @@ const RepositoryItem = ({
         <div className="RepositoryItem-description-info" 
              dangerouslySetInnerHTML={{ __html: descriptionHTML}} />
         
-        <div className="Repository-description-details">
+        <div className="RepositoryItem-description-details">
           <div>
             {primaryLanguage && (<span>Language: {primaryLanguage.name}</span>)}
           </div>
