@@ -1,5 +1,6 @@
 import Loading from "../Loading"
 import { ButtonUnobtrusive } from "../Button"
+import './style.css'
 
 const FetchMore = ({ loading, hasNextPage, fetchMore, variables, children }) => {
   return (
