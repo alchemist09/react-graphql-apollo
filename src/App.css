@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -7,9 +10,24 @@
   pointer-events: none;
 }
 
+.App-content_large-header,
+.App-content_small-header {
+  margin-top: 54px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@media only screen and (max-device-width: 480ox) {
+  .App-content_large-header {
+    margin-top: 123px;
+  }
+  
+  .App-content_small-header {
+    margin-top: 68px;
   }
 }
 
