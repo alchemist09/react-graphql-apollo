@@ -1,0 +1,8 @@
+ul {
+  display: inline-flex;
+  margin: 0 auto;
+}
+
+ul li {
+  margin: 0.5rem 0.4rem;
+}
