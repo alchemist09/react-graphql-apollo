@@ -40,7 +40,9 @@ const Profile = () => {
   const { viewer } = data
 
   return (
-    <RepositoryList loading={loading} repositories={viewer.repositories} fetchMore={fetchMore} />
+    <div className="App-content_small-header">
+      <RepositoryList loading={loading} repositories={viewer.repositories} fetchMore={fetchMore} />
+    </div>
   )
 }
 
