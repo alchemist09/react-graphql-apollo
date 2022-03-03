@@ -2,7 +2,7 @@ import { gql, useQuery } from "@apollo/client"
 import { REPOSITORY_FRAGMENT } from "../Repository"
 import Loading from "../Loading"
 import ErrorMessage from "../Error"
-import RepositoryList from "../Repository"
+import RepositoryItem from "../Repository/RepositoryItem"
 
 const GET_REPOSITORIES_OF_ORGANIZATION = gql`
   ${REPOSITORY_FRAGMENT}
@@ -20,10 +20,10 @@ const GET_REPOSITORIES_OF_ORGANIZATION = gql`
 `
 
 
-const Organization = ({ organizationName }) => {
-  const { loading, error, data, fetchMore } = useQuery(GET_REPOSITORIES_OF_ORGANIZATION, { 
+const Organization = ({ organizationLogin }) => {
+  const { loading, error, data } = useQuery(GET_REPOSITORIES_OF_ORGANIZATION, { 
     variables: {
-      login: organizationName
+      organizationLogin
     }
   })
 
@@ -37,14 +37,26 @@ const Organization = ({ organizationName }) => {
 
   if(!data) { return null }
 
-  const { repositories } = data.repositories
+  console.log(data)
+  const { organization } = data
 
   return (
     <div className="App-content_large-header">
       <h1>Organization</h1>
-      <RepositoryList loading={loading} repositories={repositories} fetchMore={fetchMore} />
+
+      {organization.repositories.edges.map(({ node }) => {
+        return (
+          <div key={node.id} className="RepositoryItem">
+            <RepositoryItem {...node} />
+          </div>
+        )
+      })}
     </div>
   )
+}
+
+Organization.defaultProps = {
+  organizationLogin: "github"
 }
 
 export default Organization
