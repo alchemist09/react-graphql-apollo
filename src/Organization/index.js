@@ -1,5 +1,5 @@
 const Organization = () => (
-  <div className="App-content_larger-header">
+  <div className="App-content_large-header">
     <h1>Organization</h1>
   </div>
 )
