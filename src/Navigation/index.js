@@ -5,13 +5,13 @@ import './style.css'
 
 const Navigation = () => {
   return (
-    <header>
+    <header className="Navigation">
       <nav>
         <ul>
-          <li>
+          <li className="Navigation-link">
             <Link to={routes.ORGANIZATION}>Home</Link>
           </li>
-          <li>
+          <li className="Navigation-link">
             <Link to={routes.PROFILE}>Profile</Link>
           </li>
         </ul>
