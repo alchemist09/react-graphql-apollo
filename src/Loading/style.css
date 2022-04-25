@@ -1,0 +1,6 @@
+.LoadingMessage {
+  margin: 90px 20px 20px 20px;
+  display: flex;
+  justify-content: center;
+  color: rgb(66, 60, 60);
+}
