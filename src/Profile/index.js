@@ -31,7 +31,7 @@ const Profile = () => {
   
   if(loading && !data) {
     console.log("data: ", data)
-    return <Loading />
+    return <Loading position="top" />
   }
 
   if(error) return <ErrorMessage error={error} />

@@ -30,10 +30,11 @@ const Organization = ({ organizationLogin }) => {
   })
 
   if(loading && !data) {
-    return <Loading />
+    return <Loading position="top" />
   }
 
   if(error) {
+    console.error(error)
     return <ErrorMessage error={error} />
   }
 

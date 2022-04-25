@@ -6,7 +6,7 @@ const FetchMore = ({ loading, hasNextPage, fetchMore, variables, children }) => 
   return (
     <div className="FetchMore">
     {  
-      loading ? <Loading /> : (
+      loading ? <Loading position="bottom" /> : (
         hasNextPage && 
         <ButtonUnobtrusive
           type="button"
