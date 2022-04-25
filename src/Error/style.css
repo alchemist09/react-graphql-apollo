@@ -1,5 +1,7 @@
 .ErrorMessage {
-  margin: 20px;
+  margin: 90px 20px 20px 20px;
   display: flex;
   justify-content: center;
+  color: white;
+  background-color: rgb(64, 104, 104);
 }
