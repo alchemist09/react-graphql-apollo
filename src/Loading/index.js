@@ -1,8 +1,10 @@
 import './style.css'
 
-const Loading = () => {
+const Loading = ({ position }) => {
+  const default_style = 'LoadingMessage'
+  const loading_position = position === 'top' ? `${default_style} Loading-top`: `${default_style} Loading-bottom`
   return (
-    <div className="LoadingMessage">Loading.......</div>
+    <div className={loading_position}>Loading.......</div>
   )
 }
 
