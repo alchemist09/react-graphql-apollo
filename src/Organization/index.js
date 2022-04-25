@@ -44,6 +44,9 @@ const Organization = ({ organizationLogin }) => {
 
   const lookupOrgRepos = (evt) => {
     evt.preventDefault()
+    if(!newOrganization) {
+      return
+    }
     refetch({
       organizationLogin: newOrganization
     })
@@ -63,13 +66,13 @@ const Organization = ({ organizationLogin }) => {
         <button type="submit">Search Repos</button>
       </form>
 
-      {organization.repositories.edges.map(({ node }) => {
+      {organization.repositories.edges.length? organization.repositories.edges.map(({ node }) => {
         return (
           <div key={node.id} className="RepositoryItem">
             <RepositoryItem {...node} />
           </div>
         )
-      })}
+      }) : <p>Could not find repositories for the specified organization"</p>}
     </div>
   )
 }
