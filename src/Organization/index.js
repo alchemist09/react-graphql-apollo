@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { gql, useQuery } from "@apollo/client"
 import { REPOSITORY_FRAGMENT } from "../Repository"
 import Loading from "../Loading"
@@ -21,7 +22,8 @@ const GET_REPOSITORIES_OF_ORGANIZATION = gql`
 
 
 const Organization = ({ organizationLogin }) => {
-  const { loading, error, data } = useQuery(GET_REPOSITORIES_OF_ORGANIZATION, { 
+  const [newOrganization, setNewOrganization] = useState('')
+  const { loading, error, data, refetch } = useQuery(GET_REPOSITORIES_OF_ORGANIZATION, { 
     variables: {
       organizationLogin
     }
@@ -40,9 +42,26 @@ const Organization = ({ organizationLogin }) => {
   console.log(data)
   const { organization } = data
 
+  const lookupOrgRepos = (evt) => {
+    evt.preventDefault()
+    refetch({
+      organizationLogin: newOrganization
+    })
+  }
+
+  const handleChange = evt => {
+    setNewOrganization(evt.target.value)
+  }
+
   return (
     <div className="App-content_large-header">
       <h1>Organization</h1>
+
+      <form onSubmit={lookupOrgRepos}>
+        <label>Enter Organization</label>
+        <input type="text" id="org_name" value={newOrganization} onChange={handleChange} />
+        <button type="submit">Search Repos</button>
+      </form>
 
       {organization.repositories.edges.map(({ node }) => {
         return (
