@@ -1,6 +1,8 @@
+import './style.css'
+
 const Loading = () => {
   return (
-    <div>Loading.......</div>
+    <div className="LoadingMessage">Loading.......</div>
   )
 }
 
