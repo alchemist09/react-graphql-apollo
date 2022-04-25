@@ -2,8 +2,8 @@ import './style.css'
 
 const ErrorMessage = ({ error }) => {
   return (
-    <div className="ErrorMessagee">
-      <small>{error.toString()}</small>
+    <div className="ErrorMessage">
+      <p><small>{error.toString()}</small></p>
     </div>
   )
 }
