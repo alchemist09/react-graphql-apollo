@@ -50,6 +50,17 @@ const cache = new InMemoryCache({
               ...incoming
             }
           }
+        },
+        organization: {
+          keyArgs: false,
+          merge(existing={}, incoming) {
+            console.log("ORGANIZATION EXISTING: ", existing)
+            console.log("ORGANIZATION INCOMING: ", incoming)
+            return {
+              ...existing,
+              ...incoming
+            }
+          }
         }
       }
     },
@@ -62,6 +73,22 @@ const cache = new InMemoryCache({
             console.log("REPO EXISTING: ", existing)
             console.log("REPO INCOMING: ", incoming)
             console.log("typeof edges: ", typeof incoming.edges)
+            return {
+              ...existing,
+              ...incoming
+            }
+          }
+        }
+      }
+    },
+    Organization: {
+      fields: {
+        keyArgs: false,
+        repositories: {
+          keyArgs: false,
+          merge(existing={}, incoming) {
+            console.log("ORG REPOOS EXISTING: ", existing)
+            console.log("ORG REPOOS INCOMING: ", incoming)
             return {
               ...existing,
               ...incoming
