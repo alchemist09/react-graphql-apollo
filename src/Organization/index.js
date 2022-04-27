@@ -26,7 +26,7 @@ const GET_REPOSITORIES_OF_ORGANIZATION = gql`
 
 const Organization = ({ organizationLogin }) => {
   const [newOrganization, setNewOrganization] = useState('')
-  const { loading, error, data, refetch } = useQuery(GET_REPOSITORIES_OF_ORGANIZATION, { 
+  const { loading, error, data, refetch, fetchMore } = useQuery(GET_REPOSITORIES_OF_ORGANIZATION, { 
     variables: {
       organizationLogin
     },
@@ -74,7 +74,7 @@ const Organization = ({ organizationLogin }) => {
       <RepositoryList 
         loading={loading}
         repositories={organization.repositories}
-        fetchMore={refetch}
+        fetchMore={fetchMore}
       />
     </div>
   )
