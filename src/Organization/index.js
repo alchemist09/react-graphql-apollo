@@ -1,9 +1,8 @@
 import { useState } from "react"
 import { gql, useQuery } from "@apollo/client"
-import { REPOSITORY_FRAGMENT } from "../Repository"
+import RepositoryList, { REPOSITORY_FRAGMENT } from "../Repository"
 import Loading from "../Loading"
 import ErrorMessage from "../Error"
-import RepositoryItem from "../Repository/RepositoryItem"
 
 const GET_REPOSITORIES_OF_ORGANIZATION = gql`
   ${REPOSITORY_FRAGMENT}
@@ -72,13 +71,11 @@ const Organization = ({ organizationLogin }) => {
         <button type="submit">Search Repos</button>
       </form>
 
-      {organization.repositories.edges.length? organization.repositories.edges.map(({ node }) => {
-        return (
-          <div key={node.id} className="RepositoryItem">
-            <RepositoryItem {...node} />
-          </div>
-        )
-      }) : <p>Could not find repositories for the specified organization"</p>}
+      <RepositoryList 
+        loading={loading}
+        repositories={organization.repositories}
+        fetchMore={refetch}
+      />
     </div>
   )
 }
