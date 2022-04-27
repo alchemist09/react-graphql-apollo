@@ -7,13 +7,17 @@ import RepositoryItem from "../Repository/RepositoryItem"
 
 const GET_REPOSITORIES_OF_ORGANIZATION = gql`
   ${REPOSITORY_FRAGMENT}
-  query($organizationLogin: String!) {
+  query($organizationLogin: String!, $cursor: String) {
     organization(login: $organizationLogin) {
-      repositories(first: 5, orderBy: { direction: DESC, field: CREATED_AT }) {
+      repositories(first: 5, orderBy: { direction: DESC, field: CREATED_AT }, after: $cursor) {
         edges {
           node {
             ...repository
           }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
         }
       }
     }
@@ -26,7 +30,8 @@ const Organization = ({ organizationLogin }) => {
   const { loading, error, data, refetch } = useQuery(GET_REPOSITORIES_OF_ORGANIZATION, { 
     variables: {
       organizationLogin
-    }
+    },
+    notifyOnNetworkStatusChange: true
   })
 
   if(loading && !data) {
