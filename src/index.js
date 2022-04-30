@@ -52,7 +52,7 @@ const cache = new InMemoryCache({
           }
         },
         organization: {
-          keyArgs: false,
+          keyArgs: ["login"],
           merge(existing={}, incoming) {
             console.log("ORGANIZATION EXISTING: ", existing)
             console.log("ORGANIZATION INCOMING: ", incoming)
