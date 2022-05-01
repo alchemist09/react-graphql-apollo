@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { gql, useQuery } from "@apollo/client"
 import RepositoryList, { REPOSITORY_FRAGMENT } from "../Repository"
 import Loading from "../Loading"
@@ -25,8 +24,7 @@ const GET_REPOSITORIES_OF_ORGANIZATION = gql`
 
 
 const Organization = ({ organizationLogin }) => {
-  const [newOrganization, setNewOrganization] = useState('')
-  const { loading, error, data, refetch, fetchMore } = useQuery(GET_REPOSITORIES_OF_ORGANIZATION, { 
+  const { loading, error, data, fetchMore } = useQuery(GET_REPOSITORIES_OF_ORGANIZATION, {
     variables: {
       organizationLogin
     },
@@ -47,29 +45,9 @@ const Organization = ({ organizationLogin }) => {
   console.log(data)
   const { organization } = data
 
-  const lookupOrgRepos = (evt) => {
-    evt.preventDefault()
-    if(!newOrganization) {
-      return
-    }
-    refetch({
-      organizationLogin: newOrganization
-    })
-  }
-
-  const handleChange = evt => {
-    setNewOrganization(evt.target.value)
-  }
-
   return (
     <div className="App-content_large-header">
       <h1>Organization</h1>
-
-      <form onSubmit={lookupOrgRepos}>
-        <label>Enter Organization</label>
-        <input type="text" id="org_name" value={newOrganization} onChange={handleChange} />
-        <button type="submit">Search Repos</button>
-      </form>
 
       <RepositoryList 
         loading={loading}
@@ -78,10 +56,6 @@ const Organization = ({ organizationLogin }) => {
       />
     </div>
   )
-}
-
-Organization.defaultProps = {
-  organizationLogin: "github"
 }
 
 export default Organization
