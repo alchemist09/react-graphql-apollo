@@ -38,3 +38,13 @@ ul li {
 .Navigation-link a {
   color: #ffffff;
 }
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+
+.organization-form {
+  margin-left: 4rem;
+}
