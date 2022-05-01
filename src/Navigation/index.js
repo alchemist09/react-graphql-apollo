@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import * as routes from '../constants/routes'
+import Input from '../Input'
+import Button from '../Button'
 
 import './style.css'
 
@@ -46,11 +48,12 @@ const OrganizationSearch = ({ organizationName, onOrganizationSearch }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Organization</label>
-      <input type="text" id="org_name" value={organization} onChange={handleChange} />
-      <button type="submit">Search Repos</button>
-    </form>
+    <div className="organization-form">
+      <form onSubmit={handleSubmit}>
+        <Input type="text" color="white" value={organization} onChange={handleChange} />{' '}
+        <Button color="white" type="submit">Search Repos</Button>
+      </form>
+    </div>
   )
 }
 
