@@ -6,13 +6,8 @@ import Button from '../Button'
 
 import './style.css'
 
-const Navigation = () => {
-  const [orgName, setOrgName] = useState('github')
+const Navigation = ({ organizationName, onOrganizationSearch }) => {
   const { pathname } = useLocation()
-
-  const onOrganizationSearch = value => {
-    setOrgName(value)
-  }
 
   return (
     <header className="Navigation">
@@ -27,7 +22,7 @@ const Navigation = () => {
         </ul>
         {pathname === routes.ORGANIZATION && (
           <OrganizationSearch 
-            organizationName={orgName}
+            organizationName={organizationName}
             onOrganizationSearch={onOrganizationSearch} 
           />
         )}
@@ -43,7 +38,8 @@ const OrganizationSearch = ({ organizationName, onOrganizationSearch }) => {
     setOrganization(evt.target.value)
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = evt => {
+    evt.preventDefault()
     onOrganizationSearch(organization)
   }
 
