@@ -18,6 +18,16 @@
   background: #000;
 }
 
+.Button_white {
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.Button_white:hover {
+  color: #000;
+  background: #fff;
+}
+
 .Button_unobtrusive {
   padding: 0;
   color: #000;
