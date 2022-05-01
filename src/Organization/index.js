@@ -47,7 +47,7 @@ const Organization = ({ organizationLogin }) => {
 
   return (
     <div className="App-content_large-header">
-      <h1>Organization</h1>
+      <h1>repos for {organizationLogin}</h1>
 
       <RepositoryList 
         loading={loading}
