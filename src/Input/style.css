@@ -11,7 +11,8 @@
 
 .Input_white {
   border-bottom: 1px solid #fff;
-  color: #fff;
+  color: rgb(51, 50, 50);
+  background: #fff;
 }
 
 .Input_black {
