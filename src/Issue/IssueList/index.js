@@ -1,4 +1,6 @@
 import { useQuery, gql } from '@apollo/client'
+import ErrorMessage from '../../Error'
+import Loading from '../../Loading'
 
 const GET_ISSUES_OF_REPOSITORY = gql`
   query($repositoryName: String!, $repositoryOwner: String!) {
@@ -26,6 +28,16 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
       repositoryOwner
     }
   })
+
+  if(loading) {
+    return <Loading />
+  }
+
+  if(error) {
+    return <ErrorMessage error={error} />
+  }
+
+  if(!data) { return null }
 
   return (
     <div className='issues'>
