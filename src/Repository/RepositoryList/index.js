@@ -2,6 +2,7 @@ import RepositoryItem from "../RepositoryItem"
 import FetchMore from "../../FetchMore"
 import '../../index.css'
 import '../style.css'
+import Issues from "../../Issue"
 
 
 const RepositoryList = ({ loading, repositories, fetchMore }) => {
@@ -11,6 +12,10 @@ const RepositoryList = ({ loading, repositories, fetchMore }) => {
         repositories.edges.map(({ node }) => (
           <div key={node.id} className="RepositoryItem">
             <RepositoryItem {...node} />
+            <Issues
+              repositoryName={node.name}
+              repositoryOwner={node.owner.login}
+            />
           </div>
         ))
       }
