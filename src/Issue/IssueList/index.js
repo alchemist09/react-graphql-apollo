@@ -52,4 +52,12 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
   )
 }
 
+const IssueList = ({ issues }) => {
+  return (
+    <div className='IssueList'>
+    
+    </div>
+  )
+}
+
 export default Issues
