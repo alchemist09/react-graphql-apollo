@@ -29,12 +29,14 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     }
   })
 
-  if(loading) {
-    return <Loading />
-  }
-
   if(error) {
     return <ErrorMessage error={error} />
+  }
+
+  const { repository } = data
+
+  if(loading && !repository) {
+    return <Loading />
   }
 
   if(!data) { return null }
