@@ -39,6 +39,10 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     return <Loading />
   }
 
+  if(!repository.issues.edges.length) {
+    return <div className='IssueLisit'>No issues...</div>
+  }
+
   if(!data) { return null }
 
   return (
