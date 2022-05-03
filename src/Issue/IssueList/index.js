@@ -20,7 +20,7 @@ const GET_ISSUES_OF_REPOSITORY = gql`
 `
 
 const Issues = ({ repositoryName, repositoryOwner }) => {
-  const { loadinig, error, data } = useQuery(GET_ISSUES_OF_REPOSITORY, {
+  const { loading, error, data } = useQuery(GET_ISSUES_OF_REPOSITORY, {
     variables: {
       repositoryName,
       repositoryOwner
