@@ -45,11 +45,7 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
 
   if(!data) { return null }
 
-  return (
-    <div className='issues'>
-    
-    </div>
-  )
+  return <IssueList issues={repository.issues} />
 }
 
 const IssueList = ({ issues }) => {
