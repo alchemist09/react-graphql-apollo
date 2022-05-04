@@ -53,7 +53,7 @@ const IssueList = ({ issues }) => {
   return (
     <div className='IssueList'>
       {issues.edges.map((node) => {
-        return <IssueItem id={node.id} {...node} />
+        return <IssueItem key={node.id} {...node} />
       })}
     </div>
   )
