@@ -3,6 +3,8 @@ import ErrorMessage from '../../Error'
 import Loading from '../../Loading'
 import IssueItem from '../IssueItem'
 
+import './style.css'
+
 const GET_ISSUES_OF_REPOSITORY = gql`
   query($repositoryName: String!, $repositoryOwner: String!) {
     repository(name: $repositoryName, owner: $repositoryOwner) {
