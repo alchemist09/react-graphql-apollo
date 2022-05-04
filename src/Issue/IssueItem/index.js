@@ -1,3 +1,5 @@
+import Link from "../../Link"
+
 const IssueItem = ({
   bodyHTML,
   number,
@@ -7,7 +9,7 @@ const IssueItem = ({
 }) => {
    return (
      <div>
-        <h3><a href={url}>&#35;{number}{' '}[{state}] - {title}</a></h3>
+        <h3><Link href={url}>&#35;{number}{' '}[{state}] - {title}</Link></h3>
         <div dangerouslySetInnerHTML={{ __html: bodyHTML }}></div>
      </div>
    )
