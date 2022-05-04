@@ -1,6 +1,7 @@
 import { useQuery, gql } from '@apollo/client'
 import ErrorMessage from '../../Error'
 import Loading from '../../Loading'
+import IssueItem from '../IssueItem'
 
 const GET_ISSUES_OF_REPOSITORY = gql`
   query($repositoryName: String!, $repositoryOwner: String!) {
@@ -51,7 +52,9 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
 const IssueList = ({ issues }) => {
   return (
     <div className='IssueList'>
-    
+      {issues.edges.map((node) => {
+        return <IssueItem id={node.id} {...node} />
+      })}
     </div>
   )
 }
