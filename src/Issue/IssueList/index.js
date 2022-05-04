@@ -44,15 +44,14 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     return <div className='IssueLisit'>No issues...</div>
   }
 
-  if(!data) { return null }
-
+  console.log(repository.issues)
   return <IssueList issues={repository.issues} />
 }
 
 const IssueList = ({ issues }) => {
   return (
     <div className='IssueList'>
-      {issues.edges.map((node) => {
+      {issues.edges.map(({ node }) => {
         return <IssueItem key={node.id} {...node} />
       })}
     </div>
