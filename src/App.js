@@ -10,7 +10,11 @@ function App() {
   const [orgName, setOrgName] = useState('github')
 
   const onOrganizationSearch = (value) => {
-    setOrgName(value)
+    if(value !== "") {
+      setOrgName(value)
+      return
+    }
+    setOrgName('github')
   }
 
   return (
