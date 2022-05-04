@@ -33,11 +33,11 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     return <ErrorMessage error={error} />
   }
 
-  const { repository } = data
-
-  if(loading && !repository) {
-    return <Loading />
+  if(loading && !data) {
+    return <Loading position='top' />
   }
+
+  const { repository } = data
 
   if(!repository.issues.edges.length) {
     return <div className='IssueLisit'>No issues...</div>
