@@ -7,11 +7,8 @@ const IssueItem = ({
 }) => {
    return (
      <div>
-        <h3><a href={url}>Issue &#x23;{number} - {title}</a></h3>
-        <span>{state}</span>
-        <p>
-           {bodyHTML}
-        </p>
+        <h3><a href={url}>&#35;{number}{' '}[{state}] - {title}</a></h3>
+        <div dangerouslySetInnerHTML={{ __html: bodyHTML }}></div>
      </div>
    )
 }
