@@ -111,6 +111,37 @@ const cache = new InMemoryCache({
           }
         }
       }
+    },
+    Repository: {
+      fields: {
+        keyArgs: false,
+        issues: {
+          keyArgs: false,
+          merge(existing={}, incoming) {
+            console.log("REPO ISSUES EXISTING: ", existing)
+            console.log("REPO ISSUES INCOMING: ", incoming)
+            return {
+              ...existing,
+              ...incoming
+            }
+          }
+        }
+      }
+    },
+    IssueConnection: {
+      fields: {
+        keyArgs: false,
+        edges: {
+          merge(existing=[], incoming) {
+            console.log("ISSUES EXISTING: ", existing)
+            console.log("ISSUES INCOMING: ", incoming)
+            return [
+              ...existing,
+              ...incoming
+            ]
+          }
+        }
+      }
     }
   }
 })
