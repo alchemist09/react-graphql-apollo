@@ -6,9 +6,9 @@ import IssueItem from '../IssueItem'
 import './style.css'
 
 const GET_ISSUES_OF_REPOSITORY = gql`
-  query($repositoryName: String!, $repositoryOwner: String!) {
+  query($repositoryName: String!, $repositoryOwner: String!, $cursor: String) {
     repository(name: $repositoryName, owner: $repositoryOwner) {
-      issues(first: 5) {
+      issues(first: 5, after: $cursor, orderBy: { field: UPDATED_AT, direction: ASC }) {
         edges {
           node {
             id
@@ -18,6 +18,10 @@ const GET_ISSUES_OF_REPOSITORY = gql`
             title
             url
           }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
         }
       }
     }
