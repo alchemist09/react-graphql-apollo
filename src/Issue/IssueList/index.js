@@ -1,5 +1,6 @@
 import { useQuery, gql } from '@apollo/client'
 import ErrorMessage from '../../Error'
+import FetchMore from '../../FetchMore'
 import Loading from '../../Loading'
 import IssueItem from '../IssueItem'
 
@@ -29,11 +30,12 @@ const GET_ISSUES_OF_REPOSITORY = gql`
 `
 
 const Issues = ({ repositoryName, repositoryOwner }) => {
-  const { loading, error, data } = useQuery(GET_ISSUES_OF_REPOSITORY, {
+  const { loading, error, data, fetchMore } = useQuery(GET_ISSUES_OF_REPOSITORY, {
     variables: {
       repositoryName,
       repositoryOwner
-    }
+    },
+    notifyOnNetworkStatusChange: true
   })
 
   if(error) {
@@ -51,16 +53,29 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
   }
 
   console.log(repository.issues)
-  return <IssueList issues={repository.issues} />
+  return <IssueList 
+    loading={loading}
+    issues={repository.issues}
+    fetchMore={fetchMore}
+   />
 }
 
-const IssueList = ({ issues }) => {
+const IssueList = ({ loading, issues, fetchMore }) => {
   return (
-    <div className='IssueList'>
-      {issues.edges.map(({ node }) => {
-        return <IssueItem key={node.id} {...node} />
-      })}
-    </div>
+    <>
+      <div className='IssueList'>
+        {issues.edges.map(({ node }) => {
+          return <IssueItem key={node.id} {...node} />
+        })}
+      </div>
+
+      <FetchMore
+        loading={loading}
+        hasNextPage={issues.pageInfo.hasNextPage}
+        variables={{ cursor: issues.pageInfo.endCursor }}
+        fetchMore={fetchMore}
+      >Issues</FetchMore>
+    </>
   )
 }
 
