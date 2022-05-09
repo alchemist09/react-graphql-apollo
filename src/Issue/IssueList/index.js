@@ -4,6 +4,7 @@ import ErrorMessage from '../../Error'
 import FetchMore from '../../FetchMore'
 import Loading from '../../Loading'
 import IssueItem from '../IssueItem'
+import { ButtonUnobtrusive } from '../../Button'
 
 import './style.css'
 
@@ -60,6 +61,8 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     notifyOnNetworkStatusChange: true
   })
 
+  const onChangeIssueState = issueState => setIssueState(issueState)
+
   if(called && error) {
     return <ErrorMessage error={error} />
   }
@@ -83,7 +86,9 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
    />
   }
 
-  return ''
+  return <ButtonUnobtrusive
+    onClick={() =>  onChangeIssueState(TRANSITION_STATE[issueState])}
+    >{TRANSITION_LABELS[issueState]}</ButtonUnobtrusive>
 }
 
 const IssueList = ({ loading, issues, fetchMore }) => {
