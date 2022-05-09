@@ -1,4 +1,5 @@
-import { useQuery, gql } from '@apollo/client'
+import { useQuery, useLazyQuery, gql } from '@apollo/client'
+import { useState } from 'react'
 import ErrorMessage from '../../Error'
 import FetchMore from '../../FetchMore'
 import Loading from '../../Loading'
@@ -38,7 +39,8 @@ const GET_ISSUES_OF_REPOSITORY = gql`
 `
 
 const Issues = ({ repositoryName, repositoryOwner }) => {
-  const { loading, error, data, fetchMore } = useQuery(GET_ISSUES_OF_REPOSITORY, {
+  const [issueState, setIssueState] = useState(ISSUE_STATE.NONE)
+  const [fetchIssues, { called, loading, error, data, fetchMore }] = useLazyQuery(GET_ISSUES_OF_REPOSITORY, {
     variables: {
       repositoryName,
       repositoryOwner
@@ -46,26 +48,30 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     notifyOnNetworkStatusChange: true
   })
 
-  if(error) {
+  if(called && error) {
     return <ErrorMessage error={error} />
   }
 
-  if(loading && !data) {
+  if(called && loading && !data) {
     return <Loading position='top' />
   }
 
-  const { repository } = data
+  if(called && data) {
+    const { repository } = data
+    if(!repository.issues.edges.length) {
+      return <div className='IssueLisit'>No issues...</div>
+    }
 
-  if(!repository.issues.edges.length) {
-    return <div className='IssueLisit'>No issues...</div>
-  }
+    console.log(repository.issues)
 
-  console.log(repository.issues)
-  return <IssueList 
+    return isShow(issueState) && <IssueList 
     loading={loading}
     issues={repository.issues}
     fetchMore={fetchMore}
    />
+  }
+
+  return ''
 }
 
 const IssueList = ({ loading, issues, fetchMore }) => {
