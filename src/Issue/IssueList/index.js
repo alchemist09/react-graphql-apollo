@@ -13,6 +13,18 @@ const ISSUE_STATE = {
   CLOSED: 'CLOSED'
 }
 
+const TRANSITION_STATE = {
+  [ISSUE_STATE.NONE]: ISSUE_STATE.OPEN,
+  [ISSUE_STATE.OPEN]: ISSUE_STATE.CLOSED,
+  [ISSUE_STATE.CLOSED]: ISSUE_STATE.NONE
+}
+
+const TRANSITION_LABELS = {
+  [ISSUE_STATE.NONE]: 'Show Open Issues',
+  [ISSUE_STATE.OPEN]: 'Show Closed Issues',
+  [ISSUE_STATE.NONE]: 'Hide Issues'
+}
+
 const isShow = issueState => issueState !== ISSUE_STATE.NONE
 
 const GET_ISSUES_OF_REPOSITORY = gql`
