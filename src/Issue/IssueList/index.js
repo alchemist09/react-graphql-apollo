@@ -23,7 +23,7 @@ const TRANSITION_STATE = {
 const TRANSITION_LABELS = {
   [ISSUE_STATE.NONE]: 'Show Open Issues',
   [ISSUE_STATE.OPEN]: 'Show Closed Issues',
-  [ISSUE_STATE.NONE]: 'Hide Issues'
+  [ISSUE_STATE.CLOSED]: 'Hide Issues'
 }
 
 const isShow = issueState => issueState !== ISSUE_STATE.NONE
