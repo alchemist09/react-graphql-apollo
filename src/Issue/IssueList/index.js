@@ -6,6 +6,14 @@ import IssueItem from '../IssueItem'
 
 import './style.css'
 
+const ISSUE_STATE = {
+  NONE: 'NONE',
+  OPEN: 'OPEN',
+  CLOSED: 'CLOSED'
+}
+
+const isShow = issueState => issueState !== ISSUE_STATE.NONE
+
 const GET_ISSUES_OF_REPOSITORY = gql`
   query($repositoryName: String!, $repositoryOwner: String!, $cursor: String) {
     repository(name: $repositoryName, owner: $repositoryOwner) {
