@@ -83,6 +83,7 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     const { repository } = data
     const filteredRepository = {
       issues: {
+        ...repository.issues,
         edges: repository.issues.edges.filter(
           issue => issue.node.state === issueState
         )
