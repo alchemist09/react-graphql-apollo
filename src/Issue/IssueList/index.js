@@ -81,7 +81,17 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
 
   if(called && data) {
     const { repository } = data
-    if(!repository.issues.edges.length) {
+    const filteredRepository = {
+      issues: {
+        edges: repository.issues.edges.filter(
+          issue => issue.node.state === issueState
+        )
+      }
+    }
+
+    console.log("filteredRepository: ", filteredRepository)
+
+    if(!filteredRepository.issues.edges.length) {
       return <div className='IssueList'>No issues...</div>
     }
 
@@ -89,7 +99,7 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
 
     return isShow(issueState) && <IssueList 
     loading={loading}
-    issues={repository.issues}
+    issues={filteredRepository.issues}
     fetchMore={fetchMore}
    />
   }
