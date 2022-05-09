@@ -61,7 +61,15 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     notifyOnNetworkStatusChange: true
   })
 
-  const onChangeIssueState = issueState => setIssueState(issueState)
+  const onChangeIssueState = issueState => {
+    setIssueState(issueState)
+    issueState && fetchIssues({
+      variables: {
+        repositoryName,
+        repositoryOwner
+      }
+    })
+  }
 
   if(called && error) {
     return <ErrorMessage error={error} />
