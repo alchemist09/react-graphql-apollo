@@ -1,4 +1,4 @@
-import { useQuery, useLazyQuery, gql } from '@apollo/client'
+import { useLazyQuery, gql } from '@apollo/client'
 import { useState } from 'react'
 import ErrorMessage from '../../Error'
 import FetchMore from '../../FetchMore'
