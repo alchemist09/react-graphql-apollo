@@ -74,7 +74,7 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
   if(called && data) {
     const { repository } = data
     if(!repository.issues.edges.length) {
-      return <div className='IssueLisit'>No issues...</div>
+      return <div className='IssueList'>No issues...</div>
     }
 
     console.log(repository.issues)
