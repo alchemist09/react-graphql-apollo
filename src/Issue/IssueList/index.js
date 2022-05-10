@@ -54,10 +54,6 @@ const GET_ISSUES_OF_REPOSITORY = gql`
 const Issues = ({ repositoryName, repositoryOwner }) => {
   const [issueState, setIssueState] = useState(ISSUE_STATE.NONE)
   const [fetchIssues, { called, loading, error, data, fetchMore }] = useLazyQuery(GET_ISSUES_OF_REPOSITORY, {
-    variables: {
-      repositoryName,
-      repositoryOwner
-    },
     notifyOnNetworkStatusChange: true
   })
 
