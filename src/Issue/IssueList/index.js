@@ -98,6 +98,8 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     loading={loading}
     issues={filteredRepository.issues}
     fetchMore={fetchMore}
+    issueState={issueState}
+    onChangeIssueState={onChangeIssueState}
    />
   }
 
@@ -106,7 +108,7 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     >{TRANSITION_LABELS[issueState]}</ButtonUnobtrusive>
 }
 
-const IssueList = ({ loading, issues, fetchMore }) => {
+const IssueList = ({ loading, issues, fetchMore, issueState, onChangeIssueState }) => {
   return (
     <>
       <div className='IssueList'>
@@ -121,6 +123,10 @@ const IssueList = ({ loading, issues, fetchMore }) => {
         variables={{ cursor: issues.pageInfo.endCursor }}
         fetchMore={fetchMore}
       >Issues</FetchMore>
+
+      <ButtonUnobtrusive
+        onClick={() => onChangeIssueState(TRANSITION_STATE[issueState])}
+      >{TRANSITION_LABELS[issueState]}</ButtonUnobtrusive>
     </>
   )
 }
