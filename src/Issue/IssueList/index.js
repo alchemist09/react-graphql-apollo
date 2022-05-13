@@ -78,18 +78,8 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
 
   if(called && data) {
     const { repository } = data
-    const filteredRepository = {
-      issues: {
-        ...repository.issues,
-        edges: repository.issues.edges.filter(
-          issue => issue.node.state === issueState
-        )
-      }
-    }
 
-    console.log("filteredRepository: ", filteredRepository)
-
-    if(!filteredRepository.issues.edges.length) {
+    if(!repository.issues.edges.length) {
       if(issueState === ISSUE_STATE.NONE) {
         return (
           <ButtonUnobtrusive
@@ -104,7 +94,7 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
 
     return isShow(issueState) && <IssueList 
     loading={loading}
-    issues={filteredRepository.issues}
+    issues={repository.issues}
     fetchMore={fetchMore}
     issueState={issueState}
     onChangeIssueState={onChangeIssueState}
