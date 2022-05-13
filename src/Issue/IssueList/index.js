@@ -29,9 +29,9 @@ const TRANSITION_LABELS = {
 const isShow = issueState => issueState !== ISSUE_STATE.NONE
 
 const GET_ISSUES_OF_REPOSITORY = gql`
-  query($repositoryName: String!, $repositoryOwner: String!, $cursor: String) {
+  query($repositoryName: String!, $repositoryOwner: String!, $issueState: IssueState!, $cursor: String) {
     repository(name: $repositoryName, owner: $repositoryOwner) {
-      issues(first: 5, after: $cursor, orderBy: { field: UPDATED_AT, direction: ASC }) {
+      issues(first: 5, states: [$issueState], after: $cursor, orderBy: { field: UPDATED_AT, direction: ASC }) {
         edges {
           node {
             id
