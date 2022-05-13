@@ -62,7 +62,8 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     isShow(issueState) && fetchIssues({
       variables: {
         repositoryName,
-        repositoryOwner
+        repositoryOwner,
+        issueState
       }
     })
   }
