@@ -106,6 +106,14 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     >{TRANSITION_LABELS[issueState]}</ButtonUnobtrusive>
 }
 
+const IssueFilter = ({ issueState, onChangeIssueState }) => (
+  <ButtonUnobtrusive
+    onClick={() => onChangeIssueState(TRANSITION_STATE[issueState])}
+  >
+    {TRANSITION_LABELS[issueState]}
+  </ButtonUnobtrusive>
+)
+
 const IssueList = ({ loading, issues, fetchMore, issueState, onChangeIssueState }) => {
   return (
     <>
