@@ -92,6 +92,12 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
 
     console.log(repository.issues)
 
+    if(issueState === ISSUE_STATE.NONE) {
+      return  <ButtonUnobtrusive
+                onClick={() =>  onChangeIssueState(TRANSITION_STATE[issueState])}
+              >{TRANSITION_LABELS[issueState]}</ButtonUnobtrusive>
+    }
+    
     return isShow(issueState) && <IssueList 
     loading={loading}
     issues={repository.issues}
