@@ -6,11 +6,8 @@
 
 .IssueItem-content {
   padding-left: 10px;
-  margin: 10px auto;
+  margin-left: 10px;
+  margin-bottom: 20px;
   width: fit-content;
   border-left: 1px solid #000;
-}
-
-.IssueItem-body {
-  display: none;
 }
