@@ -73,7 +73,7 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
   }
 
   if(called && loading && !data) {
-    return <Loading position='top' />
+    return <Loading position='bottom' />
   }
 
   if(called && data) {
