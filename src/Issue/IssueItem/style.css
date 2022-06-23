@@ -1,7 +1,7 @@
 .IssueItem {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: baseline;
+  margin: 10px auto;
+  text-align: center;
+  width: fit-content;
 }
 
 .IssueItem-content {
