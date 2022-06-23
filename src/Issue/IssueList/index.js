@@ -80,13 +80,6 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     const { repository } = data
 
     if(!repository.issues.edges.length) {
-      if(issueState === ISSUE_STATE.NONE) {
-        return (
-          <ButtonUnobtrusive
-            onClick={() =>  onChangeIssueState(TRANSITION_STATE[issueState])}
-          >{TRANSITION_LABELS[issueState]}</ButtonUnobtrusive>
-        )
-      }
       return <div className='IssueList'>No issues...</div>
     }
 
