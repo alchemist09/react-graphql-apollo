@@ -86,9 +86,7 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     console.log(repository.issues)
 
     if(issueState === ISSUE_STATE.NONE) {
-      return  <ButtonUnobtrusive
-                onClick={() =>  onChangeIssueState(TRANSITION_STATE[issueState])}
-              >{TRANSITION_LABELS[issueState]}</ButtonUnobtrusive>
+      return  <IssueFilter issueState={issueState} onChangeIssueState={onChangeIssueState} />
     }
     
     return isShow(issueState) && <IssueList 
@@ -100,9 +98,7 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
    />
   }
 
-  return <ButtonUnobtrusive
-    onClick={() =>  onChangeIssueState(TRANSITION_STATE[issueState])}
-    >{TRANSITION_LABELS[issueState]}</ButtonUnobtrusive>
+  return <IssueFilter issueState={issueState} onChangeIssueState={onChangeIssueState} />
 }
 
 const IssueFilter = ({ issueState, onChangeIssueState }) => (
@@ -129,9 +125,7 @@ const IssueList = ({ loading, issues, fetchMore, issueState, onChangeIssueState 
         fetchMore={fetchMore}
       >Issues</FetchMore>
 
-      <ButtonUnobtrusive
-        onClick={() => onChangeIssueState(TRANSITION_STATE[issueState])}
-      >{TRANSITION_LABELS[issueState]}</ButtonUnobtrusive>
+      <IssueFilter issueState={issueState} onChangeIssueState={onChangeIssueState} />
     </>
   )
 }
