@@ -101,8 +101,19 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
   return <IssueFilter issueState={issueState} onChangeIssueState={onChangeIssueState} />
 }
 
-const prefetchIssues = () => {
-
+const prefetchIssues = (client, repositoryName, repositoryOwner, issueState) => {
+  const nextIssueState = TRANSITION_STATE[issueState]
+  
+  if(isShow(nextIssueState)) {
+    client.query({
+      query: GET_ISSUES_OF_REPOSITORY,
+      variables: {
+        repositoryName,
+        repositoryOwner,
+        issueState: nextIssueState
+      }
+    })
+  }
 }
 
 const IssueFilter = ({ issueState, onChangeIssueState, repositoryOwner, repositoryName }) => (
