@@ -1,4 +1,4 @@
-import { useLazyQuery, gql } from '@apollo/client'
+import { useLazyQuery, gql, ApolloConsumer } from '@apollo/client'
 import { useState } from 'react'
 import ErrorMessage from '../../Error'
 import FetchMore from '../../FetchMore'
@@ -101,12 +101,22 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
   return <IssueFilter issueState={issueState} onChangeIssueState={onChangeIssueState} />
 }
 
+const prefetchIssues = () => {
+
+}
+
 const IssueFilter = ({ issueState, onChangeIssueState }) => (
-  <ButtonUnobtrusive
-    onClick={() => onChangeIssueState(TRANSITION_STATE[issueState])}
-  >
-    {TRANSITION_LABELS[issueState]}
-  </ButtonUnobtrusive>
+  <ApolloConsumer>
+  {client => (
+    <ButtonUnobtrusive
+      onClick={() => onChangeIssueState(TRANSITION_STATE[issueState])}
+      onMouseOver={() => prefetchIssues(client)}
+    >
+      {TRANSITION_LABELS[issueState]}
+    </ButtonUnobtrusive>
+  )}
+  
+  </ApolloConsumer>
 )
 
 const IssueList = ({ loading, issues, fetchMore, issueState, onChangeIssueState }) => {
