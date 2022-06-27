@@ -86,7 +86,12 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     console.log(repository.issues)
 
     if(issueState === ISSUE_STATE.NONE) {
-      return  <IssueFilter issueState={issueState} onChangeIssueState={onChangeIssueState} />
+      return  <IssueFilter 
+                issueState={issueState} 
+                onChangeIssueState={onChangeIssueState}
+                repositoryName={repositoryName}
+                repositoryOwner={repositoryOwner}
+              />
     }
     
     return isShow(issueState) && <IssueList 
@@ -95,15 +100,22 @@ const Issues = ({ repositoryName, repositoryOwner }) => {
     fetchMore={fetchMore}
     issueState={issueState}
     onChangeIssueState={onChangeIssueState}
+    repositoryName={repositoryName}
+    repositoryOwner={repositoryOwner}
    />
   }
 
-  return <IssueFilter issueState={issueState} onChangeIssueState={onChangeIssueState} />
+  return <IssueFilter 
+          issueState={issueState} 
+          onChangeIssueState={onChangeIssueState}
+          repositoryName={repositoryName}
+          repositoryOwner={repositoryOwner}
+         />
 }
 
 const prefetchIssues = (client, repositoryName, repositoryOwner, issueState) => {
   const nextIssueState = TRANSITION_STATE[issueState]
-  
+
   if(isShow(nextIssueState)) {
     client.query({
       query: GET_ISSUES_OF_REPOSITORY,
