@@ -115,7 +115,6 @@ const IssueFilter = ({ issueState, onChangeIssueState }) => (
       {TRANSITION_LABELS[issueState]}
     </ButtonUnobtrusive>
   )}
-  
   </ApolloConsumer>
 )
 
