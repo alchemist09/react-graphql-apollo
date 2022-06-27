@@ -105,12 +105,12 @@ const prefetchIssues = () => {
 
 }
 
-const IssueFilter = ({ issueState, onChangeIssueState }) => (
+const IssueFilter = ({ issueState, onChangeIssueState, repositoryOwner, repositoryName }) => (
   <ApolloConsumer>
   {client => (
     <ButtonUnobtrusive
       onClick={() => onChangeIssueState(TRANSITION_STATE[issueState])}
-      onMouseOver={() => prefetchIssues(client)}
+      onMouseOver={() => prefetchIssues(client, repositoryOwner, repositoryName, issueState)}
     >
       {TRANSITION_LABELS[issueState]}
     </ButtonUnobtrusive>
@@ -118,7 +118,7 @@ const IssueFilter = ({ issueState, onChangeIssueState }) => (
   </ApolloConsumer>
 )
 
-const IssueList = ({ loading, issues, fetchMore, issueState, onChangeIssueState }) => {
+const IssueList = ({ loading, issues, fetchMore, issueState, onChangeIssueState, repositoryName, repositoryOwner }) => {
   return (
     <>
       <div className='IssueList'>
@@ -134,7 +134,12 @@ const IssueList = ({ loading, issues, fetchMore, issueState, onChangeIssueState 
         fetchMore={fetchMore}
       >Issues</FetchMore>
 
-      <IssueFilter issueState={issueState} onChangeIssueState={onChangeIssueState} />
+      <IssueFilter 
+        issueState={issueState} 
+        onChangeIssueState={onChangeIssueState}
+        repositoryName={repositoryName}
+        repositoryOwner={repositoryOwner}
+      />
     </>
   )
 }
